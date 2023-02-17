@@ -1,9 +1,12 @@
-# My Journey to Becoming a Web Developer Project 10 -Real-time-Weather-app
 
-<video width="320" height="240" controls>
+# <p align="center">My Journey to Becoming a Web Developer Project 10 -Real-time-Weather-app</p>
+
+
+<video width="200%" height="240" controls>
   <source src="https://vimeo.com/799979481" type="video/mp4">
 </video>
-
+        
+  
 this is a web application that provides information about weather forecasts for a specific geographic location. This application relies on a source of weather data from OpenWeatherMap and uses a combination of web technologies (HTML, TAILWIND CSS, JavaScript) to display weather forecast information to the user in an interactive way.
 
 The HTML is structured into various elements such as video, div, and form. The web app has a predefined style defined in a separate CSS file.
@@ -27,3 +30,4 @@ A second API request is then made to the OpenWeatherMap endpoint to get the weat
 The temperatures are in Kelvin, so they are converted to Celsius and Fahrenheit and displayed in the user interface. The weather forecast icons are retrieved from the OpenWeatherMap server and displayed along with the temperatures.
 
 The weather forecasts for the next few hours and days are displayed in separate blocks within the user interface. The temperatures for the next few hours can be converted to Celsius or Fahrenheit by clicking on the respective buttons at the top of the page.
+    
