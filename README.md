@@ -2,9 +2,7 @@
 # <p align="center">My Journey to Becoming a Web Developer Project 10 -Real-time-Weather-app</p>
 
 
-<video width="200%" height="240" controls>
-  <source src="https://vimeo.com/799979481" type="video/mp4">
-</video>
+https://drive.google.com/file/d/1DVJIMtw2aINYUBr25t4ZuiAWvmDoS8FP/view?usp=sharing
         
   
 this is a web application that provides information about weather forecasts for a specific geographic location. This application relies on a source of weather data from OpenWeatherMap and uses a combination of web technologies (HTML, TAILWIND CSS, JavaScript) to display weather forecast information to the user in an interactive way.
