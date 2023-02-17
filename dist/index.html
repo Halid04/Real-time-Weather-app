@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-time Weather app</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="h-screen flex justify-center items-center text-white">
+    <video id="bgVideo" class="absolute top-0 left-0 w-full h-full object-cover -z-10" autoplay loop muted>
+        <source src="/dist/video/soleggiato-nuvoloso.mp4">
+    </video>
+    <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-75"></div>
+    <div id="container" class="flex justify-center items-center flex-col shadow-2xl shadow-black w-[30%] h-[10%] rounded-2xl bg-[#ffffff59] backdrop-blur-md">
+        <div id="current-weather-form" class="w-full h-[60%] flex flex-col">
+            <form action="#" class="w-full h-[20%] flex justify-center gap-7 m-auto">
+                <div id="input-list" class="-m-5">
+                    <input type="text" id="searchInput" autocomplete="off"  class="bg-[#ffffff1e] flex-shrink-0 text-black text-center z-50 backdrop-blur-lg w-[20rem] h-[2.8rem] rounded-full shadow-2xl shadow-black focus:border-4 border-[#ffffffc9] outline-none placeholder:text-[#00000094] placeholder:text-lg" placeholder="search a city..">
+                </div>
+                <button id="searchBtn" class="w-8 aspect-square self-center transition duration-[.2s] hover:scale-110 active:scale-90">
+                    <img src="/dist/icon/searchIcon.png" alt="search icon">
+                </button>
+            </form>
+            <div id="current-weather" class="hidden w-full h-[80%]">
+                <div id="city-temperature-units" class="w-[25%] h-full flex flex-col items-start gap-y-8 ml-3 justify-center text-white">
+                    <h1 id="city" class="text-5xl">BRESCIA,IT</h1>
+                    <div class="flex gap-4">
+                        <h2 id="current-temperature" class="text-8xl">7°</h2>
+                        <img id="current-temperature-icon" src="/dist/icon/sunIcon.png" alt="current-temperature-icon" class="w-28 aspect-square">
+                    </div>
+                    
+                    <div id="units" class="flex gap-5 text-3xl">
+                        <button id="celciusBtn" class="cursor-pointer hover:scale-105 active:scale-95">°C</button>
+                        <span>|</span>
+                        <button id="fahrenheitBtn" class="cursor-pointer text-[#ffffff98] hover:scale-105 active:scale-95">°F</button>
+                    </div>  
+                </div>
+                <div id="general-weather" class="flex justify-center items-start flex-col text-center text-xs md:text-xl place-items-center w-[75%] h-full gap-20">
+                    <div id="humidity-pressure-visibility-wind" class="flex justify-between items-start w-full ">
+                        <div class=" w-[68%] h-[55%]">
+                            <p>Humidity</p>
+                            <p id="humidity">37%</p>
+                        </div>
+                        <div class="w-[68%] h-[55%]">
+                            <p>Pressure</p>
+                            <p id="pressure">1027.1 mb</p>
+                        </div>
+                        <div class="w-[68%] h-[55%]">
+                            <p>Visibility</p>
+                            <p id="visibility">9.66 km</p>
+                        </div>
+                        <div class="w-[68%] h-[55%]">
+                            <p>Wind</p>
+                            <p id="wind">8 km/h</p>
+                        </div>
+                    </div>
+                    <div id="temperature-for-hours" class="flex items-center scrollbar-hide overflow-x-scroll w-full">
+                        <div id="temperature-icon-hourOne" class="flex flex-col justify-center items-center w-[18%] h-[95%] flex-shrink-0 transition-transform duration-[.3s] hover:-translate-y-1">
+                            <p id="hourOne" class="hours">00:00</p>
+                            <p id="temperature-hourOne" class="text-5xl">5°</p>
+                            <img id="icon-hourOne" src="/dist/icon/sunIcon.png" alt="icon-hourOne" class="w-14 aspect-square">
+                        </div>
+                        <div id="temperature-icon-hourTwo" class="flex flex-col justify-center items-center w-[18%] h-[90%] flex-shrink-0 transition-transform duration-[.3s] hover:-translate-y-1">
+                            <p id="hourTwo" class="hours">03:00</p>
+                            <p id="temperature-hourTwo" class="text-5xl">10°</p>
+                            <img id="icon-hourTwo" src="/dist/icon/sunIcon.png" alt="icon-hourTwo" class="w-14 aspect-square">
+                        </div>
+                        <div id="temperature-icon-hourThree" class="flex flex-col justify-center items-center w-[18%] h-[90%] flex-shrink-0 transition-transform duration-[.3s] hover:-translate-y-1">
+                            <p id="hourThree" class="hours">06:00</p>
+                            <p id="temperature-hourThree" class="text-5xl">-3°</p>
+                            <img id="icon-hourThree" src="/dist/icon/sunIcon.png" alt="icon-hourThree" class="w-14 aspect-square">
+                        </div>
+                        <div id="temperature-icon-hourFour" class="flex flex-col justify-center items-center w-[18%] h-[90%] flex-shrink-0 transition-transform duration-[.3s] hover:-translate-y-1">
+                            <p id="hourFour" class="hours">09:00</p>
+                            <p id="temperature-hourFour" class="text-5xl">7°</p>
+                            <img id="icon-hourFour" src="/dist/icon/sunIcon.png" alt="icon-hourFour" class="w-14 aspect-square">
+                        </div>
+                        <div id="temperature-icon-hourFive" class="flex flex-col justify-center items-center w-[18%] h-[90%] flex-shrink-0 transition-transform duration-[.3s] hover:-translate-y-1">
+                            <p id="hourFive" class="hours">09:00</p>
+                            <p id="temperature-hourFive" class="text-5xl">14°</p>
+                            <img id="icon-hourFive" src="/dist/icon/sunIcon.png" alt="icon-hourFive" class="w-14 aspect-square">
+                        </div>
+                        <div id="temperature-icon-hourSix" class="flex flex-col justify-center items-center w-[18%] h-[90%] flex-shrink-0 transition-transform duration-[.3s] hover:-translate-y-1">
+                            <p id="hourSix" class="hours">12:00</p>
+                            <p id="temperature-hourSix" class="text-5xl">9°</p>
+                            <img id="icon-hourSix" src="/dist/icon/sunIcon.png" alt="icon-hourSix" class="w-14 aspect-square">
+                        </div>
+                        <div id="temperature-icon-hourSeven" class="flex flex-col justify-center items-center w-[18%] h-[90%] flex-shrink-0 transition-transform duration-[.3s] hover:-translate-y-1">
+                            <p id="hourSeven" class="hours">15:00</p>
+                            <p id="temperature-hourSeven" class="text-5xl">2°</p>
+                            <img id="icon-hourSeven" src="/dist/icon/sunIcon.png" alt="icon-hourSeven" class="w-14 aspect-square">
+                        </div>
+                        <div id="temperature-icon-hourEight" class="flex flex-col justify-center items-center w-[18%] h-[90%] flex-shrink-0 transition-transform duration-[.3s] hover:-translate-y-1">
+                            <p id="hourEight" class="hours">18:00</p>
+                            <p id="temperature-hourEight" class="text-5xl">-9°</p>
+                            <img id="icon-hourEight" src="/dist/icon/sunIcon.png" alt="icon-hourEight" class="w-14 aspect-square">
+                        </div>
+                        <div id="temperature-icon-hourNine" class="flex flex-col justify-center items-center w-[18%] h-[90%] flex-shrink-0 transition-transform duration-[.3s] hover:-translate-y-1">
+                            <p id="hourNine" class="hours">21:00</p>
+                            <p id="temperature-hourNine" class="text-5xl">3°</p>
+                            <img id="icon-hourNine" src="/dist/icon/sunIcon.png" alt="icon-hourNine" class="w-14 aspect-square">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="weather-following-days" class="hidden items-center gap-3 overflow-x-scroll scrollbar-hide w-[98%] h-[40%]">
+            <div id="temperature-dayOne" class="bg-[#ffffff00] backdrop-blur-sm w-[40%] flex flex-col items-center justify-evenly md:w-[40%] lg:w-[25%] h-[90%] rounded-xl flex-shrink-0 shadow-xl shadow-black transition-transform duration-[.3s] hover:-translate-y-3">
+                <h1 id="dayOne" class="text-center text-3xl">Today</h1>
+                <h2 id="high-low-temperature-dayOne" class="text-4xl" title="High and Low temperature">10° &nbsp; -2°</h2>
+            </div>
+            <div id="temperature-dayTwo" class="bg-[#ffffff00] backdrop-blur-sm w-[40%] flex flex-col items-center justify-evenly md:w-[40%] lg:w-[25%] h-[90%] rounded-xl flex-shrink-0 shadow-xl shadow-black transition-transform duration-[.3s] hover:-translate-y-3">
+                <h1 id="dayTwo" class="text-center text-3xl">Tuesday</h1>
+                <h2 id="high-low-temperature-dayTwo" class="text-4xl" title="High and Low temperature">16° &nbsp; 3°</h2>
+            </div>
+            <div id="temperature-dayThree" class="bg-[#ffffff00] backdrop-blur-sm w-[40%] flex flex-col items-center justify-evenly md:w-[40%] lg:w-[25%] h-[90%] rounded-xl flex-shrink-0 shadow-xl shadow-black transition-transform duration-[.3s] hover:-translate-y-3">
+                <h1 id="dayThree" class="text-center text-3xl">Wednesday</h1>
+                <h2 id="high-low-temperature-dayThree" class="text-4xl" title="High and Low temperature">7° &nbsp; -5°</h2>
+            </div>
+            <div id="temperature-dayFour" class="bg-[#ffffff00] backdrop-blur-sm w-[40%] flex flex-col items-center justify-evenly md:w-[40%] lg:w-[25%] h-[90%] rounded-xl flex-shrink-0 shadow-xl shadow-black transition-transform duration-[.3s] hover:-translate-y-3">
+                <h1 id="dayFour" class="text-center text-3xl">thursday</h1>
+                <h2 id="high-low-temperature-dayFour" class="text-4xl" title="High and Low temperature">20° &nbsp; -4°</h2>
+            </div>
+            <div id="temperature-dayFive" class="bg-[#ffffff00] backdrop-blur-sm w-[40%] flex flex-col items-center justify-evenly md:w-[40%] lg:w-[25%] h-[90%] rounded-xl flex-shrink-0 shadow-xl shadow-black transition-transform duration-[.3s] hover:-translate-y-3">
+                <h1 id="dayFive" class="text-center text-3xl">friday</h1>
+                <h2 id="high-low-temperature-dayFive" class="text-4xl" title="High and Low temperature">1° &nbsp; -34°</h2>
+            </div>
+            <div id="temperature-daySix" class="bg-[#ffffff00] backdrop-blur-sm w-[40%] flex flex-col items-center justify-evenly md:w-[40%] lg:w-[25%] h-[90%] rounded-xl flex-shrink-0 shadow-xl shadow-black transition-transform duration-[.3s] hover:-translate-y-3">
+                <h1 id="daySix" class="text-center text-3xl">Saturday</h1>
+                <h2 id="high-low-temperature-daySix" class="text-4xl" title="High and Low temperature">4° &nbsp; 1°</h2>
+            </div>
+            <div id="temperature-daySeven" class="bg-[#ffffff00] backdrop-blur-sm w-[40%] flex flex-col items-center justify-evenly md:w-[40%] lg:w-[25%] h-[90%] rounded-xl flex-shrink-0 shadow-xl shadow-black transition-transform duration-[.3s] hover:-translate-y-3">
+                <h1 id="daySeven" class="text-center text-3xl">Sunday</h1>
+                <h2 id="high-low-temperature-daySeven" class="text-4xl" title="High and Low temperature">26° &nbsp; 0°</h2>
+            </div>
+        </div>
+    </div>
+    
+    
+
+    <script src="main.js"></script>
+</body>
+</html>
